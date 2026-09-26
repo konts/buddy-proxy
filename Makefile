@@ -1,4 +1,4 @@
-.PHONY: build test test-race fmt vet check run tidy clean release release-checksums
+.PHONY: build test test-race fmt vet check run tidy clean release arm release-checksums
 
 VERSION ?= dev
 LDFLAGS := -s -w -X github.com/wnddd839/codebuddy-proxy/internal/version.Version=$(VERSION)
@@ -38,13 +38,13 @@ release:
 	GOOS=darwin GOARCH=arm64 CGO_ENABLED=0 go build -trimpath -ldflags="$(LDFLAGS)" -o releases/codebuddy-proxy-darwin-arm64 ./cmd/codebuddy-proxy
 	GOOS=darwin GOARCH=amd64 CGO_ENABLED=0 go build -trimpath -ldflags="$(LDFLAGS)" -o releases/codebuddy-proxy-darwin-amd64 ./cmd/codebuddy-proxy
 	cp .env.example releases/.env.example
-	$(MAKE)arm:
+	$(MAKE) release-checksums
+
+arm:
 	@mkdir -p releases
 	GOOS=linux GOARCH=arm64 CGO_ENABLED=0 go build -trimpath -ldflags="$(LDFLAGS)" -o releases/codebuddy-proxy-linux-arm64 ./cmd/codebuddy-proxy
 	GOOS=linux GOARCH=arm GOARM=7 CGO_ENABLED=0 go build -trimpath -ldflags="$(LDFLAGS)" -o releases/codebuddy-proxy-linux-armv7 ./cmd/codebuddy-proxy
 	$(MAKE) release-checksums
-
-release- release-checksums
 
 release-checksums:
 	@cd releases && (sha256sum codebuddy-proxy-* 2>/dev/null || shasum -a 256 codebuddy-proxy-*) > SHA256SUMS.txt

@@ -8,6 +8,8 @@
 |------|--------|
 | **Windows 64 位** | `codebuddy-proxy-windows-x64.exe`（推荐） |
 | Linux 64 位 | `codebuddy-proxy-linux-amd64` |
+| Linux ARM64 | `codebuddy-proxy-linux-arm64` |
+| Linux ARMv7 | `codebuddy-proxy-linux-armv7` |
 | macOS Apple 芯片 (M1/M2/M3) | `codebuddy-proxy-darwin-arm64` |
 | macOS Intel | `codebuddy-proxy-darwin-amd64` |
 
@@ -48,6 +50,14 @@ make release
 ```bash
 chmod +x ./codebuddy-proxy-linux-amd64   # 或 darwin 对应文件
 ./codebuddy-proxy-linux-amd64
+```
+
+**Linux ARM（树莓派 / 服务器 ARM64）**：ARM64（`aarch64`）下载 `codebuddy-proxy-linux-arm64`，32 位 ARMv7 下载 `codebuddy-proxy-linux-armv7`。可用 `uname -m` 确认架构。
+
+```bash
+uname -m                                   # aarch64 → arm64；armv7l → armv7
+chmod +x ./codebuddy-proxy-linux-arm64
+./codebuddy-proxy-linux-arm64
 ```
 
 ## 环境变量（也可写入 `.env`）

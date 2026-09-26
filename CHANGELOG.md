@@ -7,6 +7,10 @@
 
 ## 未发布
 
+### 新增
+
+- 发布产物新增 **Linux ARM** 支持：`codebuddy-proxy-linux-arm64`（`aarch64`）与 `codebuddy-proxy-linux-armv7`（32 位 ARMv7，树莓派等）。`make release` 一并产出，另可用 `make arm` 只构建 ARM 两个产物。
+
 ---
 
 ## v0.5.4 · 2026-09-23 · 国际站账号测试不再误报 11128 · 断电不再把账号文件写成全 0
